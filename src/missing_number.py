@@ -63,6 +63,32 @@ def find_missing_mathematical(n, numbers):
 
     return expected_sum - actual_sum
 
+def find_missing_data_structure(n, numbers):
+    """
+    Approach 2: Data-structure-based (boolean presence array).
+
+    Explanation:
+        Create a list `seen` of size n+1 (indices 0 to n), all initialized
+        to False. Walk through the input numbers and mark seen[num] = True
+        for each one. Then scan indices 1 to n; the index that is still
+        False is the missing number.
+
+    Note:
+        Implemented manually with a boolean array rather than Python's
+        set() or similar shortcuts, to build the data structure from scratch.
+    """
+    seen = [False] * (n + 1)
+
+    for num in numbers:
+        if 0 <= num <= n:
+            seen[num] = True
+
+    for i in range(1, n + 1):
+        if not seen[i]:
+            return i
+
+    return -1  # no number missing (shouldn't happen with valid input)
+
 
 def main():
     n, numbers = get_input()
@@ -71,6 +97,9 @@ def main():
 
     missing_math = find_missing_mathematical(n, numbers)
     print(f"\n[Mathematical Approach] Missing number: {missing_math}")
+
+    missing_ds = find_missing_data_structure(n, numbers)
+    print(f"[Data-Structure Approach] Missing number: {missing_ds}")
 
 
 if __name__ == "__main__":
