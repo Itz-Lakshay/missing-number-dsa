@@ -89,6 +89,26 @@ def find_missing_data_structure(n, numbers):
 
     return -1  # no number missing (shouldn't happen with valid input)
 
+def print_complexity_comparison():
+    """
+    Prints a brief comparison of the time and space complexity of both
+    approaches used to solve this problem.
+    """
+    print("\n--- Complexity Comparison ---")
+    print("Mathematical Approach:")
+    print("  Time complexity : O(n)  - one pass to sum the numbers")
+    print("  Space complexity: O(1)  - only a couple of extra variables used")
+    print()
+    print("Data-Structure Approach (boolean array):")
+    print("  Time complexity : O(n)  - one pass to mark seen numbers, one pass to scan")
+    print("  Space complexity: O(n)  - extra array of size n+1 used")
+    print()
+    print("Conclusion:")
+    print("  Both approaches run in O(n) time, but the mathematical approach")
+    print("  is more space-efficient (O(1) vs O(n)). The data-structure")
+    print("  approach, however, generalizes more easily to variations of")
+    print("  this problem (e.g. multiple missing numbers, duplicates).")
+
 
 def main():
     n, numbers = get_input()
@@ -101,6 +121,7 @@ def main():
     missing_ds = find_missing_data_structure(n, numbers)
     print(f"[Data-Structure Approach] Missing number: {missing_ds}")
 
+    print_complexity_comparison()
 
 if __name__ == "__main__":
     main()
