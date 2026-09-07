@@ -56,6 +56,17 @@ def validate_numbers(n, numbers):
         print(f"\nWarning: expected {n - 1} numbers (n-1, since one is missing), "
               f"but got {len(numbers)}.")
         return False
+
+    seen_values = []
+    for num in numbers:
+        if num < 1 or num > n:
+            print(f"\nWarning: {num} is out of the valid range (1 to {n}).")
+            return False
+        if num in seen_values:
+            print(f"\nWarning: duplicate number found: {num}.")
+            return False
+        seen_values.append(num)
+
     return True
 
 def find_missing_mathematical(n, numbers):
@@ -93,7 +104,7 @@ def find_missing_data_structure(n, numbers):
     seen = [False] * (n + 1)
 
     for num in numbers:
-        if 0 <= num <= n:
+        if 1 <= num <= n:
             seen[num] = True
 
     for i in range(1, n + 1):
