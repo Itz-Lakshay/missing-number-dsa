@@ -45,6 +45,19 @@ def get_input():
 
     return n, numbers
 
+def validate_numbers(n, numbers):
+    """
+    Checks whether the input list is a sensible fit for this problem
+    (exactly one number missing from the range 1 to n).
+
+    Returns True if valid, False otherwise (after printing a warning).
+    """
+    if len(numbers) != n - 1:
+        print(f"\nWarning: expected {n - 1} numbers (n-1, since one is missing), "
+              f"but got {len(numbers)}.")
+        return False
+    return True
+
 def find_missing_mathematical(n, numbers):
     """
     Approach 1: Mathematical (sum formula).
@@ -121,12 +134,24 @@ def main():
     print(f"n            : {n}")
     print(f"Numbers list : {numbers}")
 
+    if not validate_numbers(n, numbers):
+        print("Cannot reliably find a single missing number with this input.")
+        print("=" * 40)
+        return
+
     missing_math = find_missing_mathematical(n, numbers)
     missing_ds = find_missing_data_structure(n, numbers)
 
     print("\n--- Results ---")
-    print(f"[Mathematical Approach]     Missing number: {missing_math}")
-    print(f"[Data-Structure Approach]   Missing number: {missing_ds}")
+    if 1 <= missing_math <= n:
+        print(f"[Mathematical Approach]     Missing number: {missing_math}")
+    else:
+        print("[Mathematical Approach]     No missing number found (or invalid input).")
+
+    if missing_ds != -1:
+        print(f"[Data-Structure Approach]   Missing number: {missing_ds}")
+    else:
+        print("[Data-Structure Approach]   No missing number found (or invalid input).")
 
     print_complexity_comparison()
 
