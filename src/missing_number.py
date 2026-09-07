@@ -111,17 +111,27 @@ def print_complexity_comparison():
 
 
 def main():
+    print("=" * 40)
+    print("   THE MISSING NUMBER (DSA)")
+    print("=" * 40)
+
     n, numbers = get_input()
-    print(f"\nYou entered n = {n}")
-    print(f"Numbers list = {numbers}")
+
+    print("\n--- Input Summary ---")
+    print(f"n            : {n}")
+    print(f"Numbers list : {numbers}")
 
     missing_math = find_missing_mathematical(n, numbers)
-    print(f"\n[Mathematical Approach] Missing number: {missing_math}")
-
     missing_ds = find_missing_data_structure(n, numbers)
-    print(f"[Data-Structure Approach] Missing number: {missing_ds}")
+
+    print("\n--- Results ---")
+    print(f"[Mathematical Approach]     Missing number: {missing_math}")
+    print(f"[Data-Structure Approach]   Missing number: {missing_ds}")
 
     print_complexity_comparison()
+
+    print("=" * 40)
+
 
 if __name__ == "__main__":
     main()
