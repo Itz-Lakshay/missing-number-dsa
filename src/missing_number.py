@@ -45,11 +45,32 @@ def get_input():
 
     return n, numbers
 
+def find_missing_mathematical(n, numbers):
+    """
+    Approach 1: Mathematical (sum formula).
+
+    Explanation:
+        The sum of numbers from 1 to n is given by the formula n*(n+1)/2.
+        Since exactly one number is missing from our list, the actual sum
+        of the list will be less than this expected sum. The difference
+        between the expected sum and the actual sum is the missing number.
+    """
+    expected_sum = n * (n + 1) // 2
+
+    actual_sum = 0
+    for num in numbers:
+        actual_sum += num
+
+    return expected_sum - actual_sum
+
 
 def main():
     n, numbers = get_input()
     print(f"\nYou entered n = {n}")
     print(f"Numbers list = {numbers}")
+
+    missing_math = find_missing_mathematical(n, numbers)
+    print(f"\n[Mathematical Approach] Missing number: {missing_math}")
 
 
 if __name__ == "__main__":
